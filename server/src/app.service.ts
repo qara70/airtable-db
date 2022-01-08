@@ -17,7 +17,7 @@ export class AppService {
       const response = await request.get('/');
       return response.data;
     } catch (error) {
-      return error.message;
+      throw new Error(error.message);
     }
   }
 
@@ -40,7 +40,7 @@ export class AppService {
       const response = await request.post('/', createDataForm);
       return response.data;
     } catch (error) {
-      return error.message;
+      throw new Error(error.message);
     }
   }
 }
