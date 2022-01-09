@@ -37,10 +37,17 @@ export class AppService {
     };
 
     try {
+      this.validateCreateUser(createUser);
       const response = await request.post('/', createDataForm);
       return response.data;
     } catch (error) {
       throw new Error(error.message);
+    }
+  }
+
+  private validateCreateUser(createUser: CreateUserDto) {
+    if (createUser.age < 0) {
+      throw new Error('年齢が0歳以下は、対応できません');
     }
   }
 }
